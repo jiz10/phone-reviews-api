@@ -8,3 +8,6 @@ go get github.com/stretchr/testify
 
 Mocks
 go install github.com/matryer/moq@latest
+
+Logs
+go get -u go.uber.org/zap
