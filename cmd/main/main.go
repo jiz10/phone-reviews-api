@@ -7,6 +7,7 @@ import (
 	_ "github.com/golang-migrate/migrate/source/file"
 	"phone-reviews-api/internal/lib/logs"
 	"phone-reviews-api/internal/pkg/repository/database"
+	"phone-reviews-api/internal/pkg/rest/writer"
 )
 
 const (
@@ -19,6 +20,11 @@ func main() {
 
 	client := database.NewSqlClient("root:root@tcp(localhost:33060)/phone_reviews_db")
 	doMigrate(client, "phone_reviews_db")
+
+	sphHandler := writer.NewCreateSmartphoneHandler(client)
+	mux := Routes(sphHandler)
+	server := NewServer(mux)
+	server.Run()
 }
 
 func doMigrate(client *database.MySqlClient, dbName string) {

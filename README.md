@@ -11,3 +11,6 @@ go install github.com/matryer/moq@latest
 
 Logs
 go get -u go.uber.org/zap
+
+Rest
+go get -u github.com/go-chi/chi
